@@ -23,5 +23,32 @@ Feature: fleetGru login function
       | password | UserUser123     |
     Then User is on the "Dashboard" page
 
+    Scenario: Log in with invalid credentials
+      When User logs in with below credentials
+        | username | user1   |
+        | password | invalid |
+      Then User sees "Invalid user name or password."
+
+  Scenario: Log in with invalid credentials
+    When User logs in with below credentials
+      | username | invalid |
+      | password | UserUser123 |
+    Then User sees "Invalid user name or password."
+
+  Scenario: Log in with missing credentials
+    When User enters username "user1"
+    And User press login button
+    Then User sees "Please fill out this field" under username input box
+
+  Scenario: Log in with missing credentials
+    When User enters password "UserUser123"
+    And User press login button
+    Then User sees "Please fill out this field" under password input box
+
+
+
+
+
+
 
 
