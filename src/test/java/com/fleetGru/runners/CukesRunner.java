@@ -8,16 +8,14 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         plugin = {
-                //"pretty",
+
                 "html:target/cucumber-reports.html",
-                "rerun:target/rerun.txt",
-                "me.jvt.cucumber.report.PrettyReports:target/cucumber"
         },
         features = "src/test/resources/features",
         glue = "com/fleetGru/step_definitions",
         dryRun = false,
         publish = false,
-        tags = ""
+        tags = "@wip"
 )
 
 public class CukesRunner {
