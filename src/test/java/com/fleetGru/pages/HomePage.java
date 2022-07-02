@@ -21,6 +21,9 @@ public class HomePage {
     @FindBy(xpath = "//a[@href=\"/user/logout\"]")
     public WebElement logoutButton;
 
+    @FindBy(xpath = "//*[@id=\"user-menu\"]")
+    public WebElement userMenu;
+
 
     public void logout(){
         BrowserUtils.waitForClickablility(nameDropdown, 5);

@@ -45,6 +45,39 @@ Feature: fleetGru login function
     And User press login button
     Then User sees "Please fill out this field" under password input box
 
+  Scenario: Forgot password link functionality
+    When User clicks Forgot your password? link
+    Then User is on the Forgot Password page
+
+  Scenario: Remember me checkbox functionality
+    When User sees Remember Me link
+    Then User sees Remember Me link clickable
+
+
+  Scenario: Password input masked
+    When User enters password "UserUser123"
+    Then User sees bullet signs
+
+  Scenario: Enter key functionality
+    When User enters username "user1"
+    And User enters password "UserUser123"
+    And User press Enter key
+    Then User is on the "Quick Launchpad" page
+
+  Scenario: User sees own username on the homepage profile
+    When User logs in with below credentials
+      | username | user1       |
+      | password | UserUser123 |
+    Then User sees "user1" on the profile
+
+  Scenario: User sees own username on the homepage profile
+    When User logs in with below credentials
+      | username | storemanager51 |
+      | password | UserUser123    |
+    Then User sees "storemanager51" on the profile
+
+
+
 
 
 

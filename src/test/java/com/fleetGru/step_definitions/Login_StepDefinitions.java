@@ -12,6 +12,9 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.Map;
@@ -92,6 +95,47 @@ public class Login_StepDefinitions {
         System.out.println(actualAlertMessage);
         Assert.assertEquals(alertMessage, actualAlertMessage);
     }
+
+    @When("User clicks Forgot your password? link")
+    public void userClicksForgotYourPasswordLink() {
+        loginPage.forgotPasswordLink.click();
+    }
+
+    @Then("User is on the Forgot Password page")
+    public void userIsOnTheForgotPasswordPage() {
+        String forgotPasswordPageTitle = Driver.getDriver().findElement(By.xpath("//h2[@class='title']")).getText();
+        System.out.println(forgotPasswordPageTitle);
+        String expectedTitle = "Forgot Password";
+        Assert.assertEquals(expectedTitle, forgotPasswordPageTitle);
+    }
+
+    @When("User sees Remember Me link")
+    public void userSeesRememberMeLink() {
+        Assert.assertTrue(loginPage.rememberMeTitle.isDisplayed());
+    }
+
+    @Then("User sees Remember Me link clickable")
+    public void userSeesRememberMeLinkClickable() {
+        Assert.assertTrue(loginPage.rememberMeCheckBox.isEnabled());
+    }
+
+    @Then("User sees bullet signs")
+    public void userSeesBulletSigns() {
+        Assert.assertTrue(loginPage.passwordInput.getAttribute("type").equals("password"));
+    }
+
+    @And("User press Enter key")
+    public void userPressEnterKey() {
+        loginPage.passwordInput.sendKeys(Keys.ENTER);
+    }
+
+
+    @Then("User sees {string} on the profile")
+    public void userSeesOnTheProfile(String username) {
+        basePage.waitUntilLoaderScreenDisappear();
+        System.out.println(username);
+        System.out.println(homePage.userMenu.getText());
+        Assert.assertEquals(username, homePage.userMenu.getText());
+    }
 }
 
-////div[.='Invalid user name or password.']
