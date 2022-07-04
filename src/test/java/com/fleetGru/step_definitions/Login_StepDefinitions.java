@@ -78,6 +78,7 @@ public class Login_StepDefinitions {
     public void userSeesAlert(String alertMessage) {
         BrowserUtils.sleep(1);
         String actualAlertMessage = loginPage.passwordInput.getAttribute("validationMessage");
+        System.out.println(alertMessage);
         System.out.println(actualAlertMessage);
         Assert.assertEquals(alertMessage, actualAlertMessage);
 

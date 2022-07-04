@@ -21,6 +21,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.security.Key;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 public class Logout_StepDefinitions {
 
@@ -32,6 +33,8 @@ public class Logout_StepDefinitions {
     @When("User logs out homepage")
     public void user_logs_out_homepage() {
         basePage.waitUntilLoaderScreenDisappear();
+        Driver.getDriver().manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        Driver.getDriver().findElement(By.xpath("//a[@href=\"/user/logout\"]"));
 
         homePage.logout();
     }
